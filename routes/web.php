@@ -395,36 +395,56 @@ Route::get('/', function () {
 
 // // =>join  
 
-// Route::get("articles/join",function(){
-//     // => Inner Join  
-//     // $articles = Article::join("users",'articles.user_id','=','users.id')->select('articles.title','users.name')->get();
-//     // // return $articles;
+// whereColumn(,)
+// whereColumn(,,)
 
-//     // foreach($articles as $article){
-//     //     echo "$article->title = $article->name <hr/>"; 
-//     // }
+Route::get('articles/wherecolumn', function(){
+    // $articles = Article::wherecolumn('id','user_id')->get();
+    // return $articles; // same id no phyit tae har ko print out pay tel
 
-//     // $articles = DB::table('articles')->join('users','articles.user_id','=','users.id')->select('articles.title','users.name as owner')->get();
-//     // // return $articles;
-//     // foreach($articles as $article){
-//     //     echo "$article->title = $article->owner <hr/>";
-//     // }
+    // $articles = Article::wherecolumn('created_at','updated_at')->get();
+    // return $articles;
 
-//     // = left Join
+    // $articles = Article::wherecolumn('created_at','updated_at')->orderByDesc('id')->get();
+    // return $articles;
 
-//     $articles = Article::leftJoin("users","articles.user_id","=","users.id")->select('articles.title as caption','users.name as owner')->get();
-//     // return $articles;
-//     // foreach($articles as $article){
-//     //     echo "$article->caption = $article->owner <hr/>";
-//     // }
+    // $articles = Article::wherecolumn('created_at','<','updated_at');
+    // return $articles;
 
-//     // Right Join
+});
 
-//     $articles = Article::rightJoin("users","articles.user_id","=","users.id")->select('articles.title as caption','users.name as owner')->get();
-//     // return $articles;
-//     foreach($articles as $article){
-//         echo "$article->owner = $article->caption <hr/>";
-//     }
+// =>Join 
 
-// });
+Route::get('articles/join', function(){
 
+    // =>Inner Join 
+    // $articles = Article::join('users','articles.user_id','=','users.id')->select('articles.title','users.name')->get();
+    // // return $articles;
+    // foreach($articles as $article){
+    //     echo "$article->title = $article->name <hr/>";
+    // }
+
+    // $articles = DB::table('articles')->join('users','articles.user_id','=','users.id')->select('articles.title','users.name')->get();
+    // // return $articles;
+    // foreach($articles as $article){
+    //     echo "$article->title = $article->name <hr/>";
+    // }
+
+    // =>Left Join 
+
+    // $articles = Article::leftJoin('users','articles.user_id','=','users.id')->select('articles.title as caption','users.name as owner')->get();
+    // // return articles;
+    // foreach($articles as $article){
+    //     echo "$article->owner = $article->caption<br/>";
+    // }
+
+    // =>Right Join 
+
+    $articles = Article::rightJoin('users','articles.user_id','=','users.id')->select('articles.title as caption','users.name as owner')->get();
+    // return articles;
+    foreach($articles as $article){
+        echo "$article->owner = $article->caption<br/>";
+    }
+
+
+});
